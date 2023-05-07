@@ -46,23 +46,23 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    public function validator(array $data)
+    protected function validator(array $data)
     {
-        return Validator::make($data, [
+        return Validator::make( $data, [
             'username' => ['required','string','between:4,12'],
             'mail' => ['required','string','email','min:4','unique:users'],
             'password' => ['required','string','between:4,12','confirmed'],
-            'password-confirm' => ['required','min:4','same:password'],
+            'password_confirmation' => ['required'],
         ],
         [
-            'username.required' => '必須項目です',
-            'email.required' => '必須項目です',
+            'username.required' => 'ユーザーネームは必須項目です',
+            'email.required' => 'メールアドレスは必須項目です',
             'mail.email' => 'メールアドレスではありません',
-            'password.required' => '必須項目です',
-            'password.min' => '4文字以上で入力してください',
-            'password-confirm.required' => '必須項目です',
-            'password-confirm.min' => '4文字以上で入力してください',
-            'password-confirm.same' => 'パスワードと確認用パスワードが一致していません',
+            'mail.unique' => 'このメールアドレスは既に使われています',
+            'password.required' => 'パスワードは必須項目です',
+            'password.min' => 'パスワードは4文字以上で入力してください',
+            'password.confirmed' => '確認用パスワードが一致しません',
+            'password_confirmation.required' => '確認用パスワードは必須項目です',
         ]
     );
     }
@@ -73,7 +73,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    public function create(array $data)
+    protected function create(array $data)
     {
         return User::create([
             'username' => $data['username'],
@@ -98,6 +98,6 @@ class RegisterController extends Controller
     }
 
     public function added(){
-        return view('auth.added');
+        return view("auth.added");
     }
 }
