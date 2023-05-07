@@ -46,13 +46,25 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    public function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => 'required|string|min:4|max:12',
-            'mail' => 'required|string|email|min:4|max:12|unique:users',
-            'password' => 'required|string|min:4|max:12|confirmed',
-        ]);
+            'username' => ['required','string','between:4,12'],
+            'mail' => ['required','string','email','min:4','unique:users'],
+            'password' => ['required','string','between:4,12','confirmed'],
+            'password-confirm' => ['required','min:4','same:password'],
+        ],
+        [
+            'username.required' => '必須項目です',
+            'email.required' => '必須項目です',
+            'mail.email' => 'メールアドレスではありません',
+            'password.required' => '必須項目です',
+            'password.min' => '4文字以上で入力してください',
+            'password-confirm.required' => '必須項目です',
+            'password-confirm.min' => '4文字以上で入力してください',
+            'password-confirm.same' => 'パスワードと確認用パスワードが一致していません',
+        ]
+    );
     }
 
     /**
@@ -61,7 +73,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    public function create(array $data)
     {
         return User::create([
             'username' => $data['username'],
@@ -78,7 +90,7 @@ class RegisterController extends Controller
     public function register(Request $request){
         if($request->isMethod('post')){
             $data = $request->input();
-
+            $this->validator($data);
             $this->create($data);
             return redirect('added');
         }
