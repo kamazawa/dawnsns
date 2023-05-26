@@ -38,11 +38,13 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    
+
     public function login(Request $request){
         if($request->isMethod('post')){
-            
+
             $data=$request->only('mail','password');
+            $request->session()->put('mail', $data['mail']);
+            $request->session()->put('password', $data['password']);
             // ログインが成功したら、トップページへ
             //↓ログイン条件は公開時には消すこと
             if(Auth::attempt($data)){
@@ -50,5 +52,10 @@ class LoginController extends Controller
             }
         }
         return view("auth.login");
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect('/login');
     }
 }
