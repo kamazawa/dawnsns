@@ -1,22 +1,115 @@
 @charset "utf-8";
-html{
-}
-body{
-}
+
+html {}
+
+body {}
+
 /* header */
-header{
-    background:#3C4767;
+header {
+    background: #3C4767;
 }
 
 /* main content */
-#row{
+#row {
     display: flex;
     flex-flow: row wrap;
 }
-#container{
+
+#container {
     flex: 0 0 80%;
 }
-#side-bar{
+
+#side-bar {
     flex: 0 0 19%;
     border-left: 1px solid #6C6C6C;
+}
+
+/*アコーディオンメニュー*/
+.menu {
+    width: 100%;
+    padding: 10px 10px 10px;
+}
+
+.menu input {
+    display: none;
+}
+
+.menu label {
+    cursor: pointer;
+    display: block;
+    color: #fff;
+    line-height: 1;
+    position: relative;
+    margin: 0 0 10px;
+    padding: 10px;
+}
+
+.menu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-bottom: 1px;
+}
+
+.menu li {
+    height: 0;
+    overflow-y: hidden;
+    transition: padding-bottom 0.5s,
+        padding-top 0.5s;
+    -webkit-transition: padding-bottom 0.5s,
+        padding-top 0.5s;
+    -moz-transition: padding-bottom 0.5s,
+        padding-top 0.5s;
+    -moz-transition: padding-bottom 0.5s,
+        padding-top 0.5s;
+    -o-transition: padding-bottom 0.5s,
+        padding-top 0.5s;
+}
+
+#menu_bar:checked~#links li {
+    height: auto;
+    opacity: 1;
+    padding: 10px;
+}
+
+#menu_bar:checked~#links li:last-child {
+    margin-bottom: 20px;
+}
+
+.menu label:after {
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-top: #fff 2px solid;
+    border-right: #fff 2px solid;
+    -webkit-transform: rotate(135deg);
+    -ms-transform: rotate(135deg);
+    transform: rotate(135deg);
+    position: absolute;
+    right: 2%;
+    top: 0;
+    bottom: 15%;
+    margin: auto;
+}
+
+.menu input[type=checkbox]:checked+label::after {
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-top: #fff 2px solid;
+    border-right: #fff 2px solid;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    position: absolute;
+    right: 2%;
+    top: 7%;
+    bottom: 0;
+    margin: auto;
+}
+
+.fade {
+    display: none;
 }

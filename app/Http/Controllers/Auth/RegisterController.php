@@ -64,7 +64,7 @@ class RegisterController extends Controller
             'password.confirmed' => '確認用パスワードが一致しません',
             'password_confirmation.required' => '確認用パスワードは必須項目です',
         ]
-    );
+        )->validate();
     }
 
     /**
@@ -92,12 +92,14 @@ class RegisterController extends Controller
             $data = $request->input();
             $this->validator($data);
             $this->create($data);
+            $request->session()->put('name', $data['username']);
             return redirect('added');
         }
         return view('auth.register');
     }
 
-    public function added(){
-        return view("auth.added");
+    public function added(Request $request){
+        $name = $request->session()->get('name');
+        return view("auth.added",['name' => $name]);
     }
 }

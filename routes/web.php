@@ -20,7 +20,7 @@
 
 
 //ログアウト中のページ
-Route::get('/login', 'Auth\LoginController@login');
+Route::get('/login', 'Auth\LoginController@login')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
 
 Route::get('/register', 'Auth\RegisterController@register');
@@ -32,9 +32,20 @@ Route::get('/added', 'Auth\RegisterController@added');
 //ログイン中のページ
 Route::get('/top','PostsController@index');
 
+Route::post('/top','PostsController@index');
+
+Route::post('posts/create', 'PostsController@create');
+
+Route::get('/post/{id}/delete','PostsController@delete');
+
+Route::put('/post/{id}/update','PostsController@update');
+
 Route::get('/profile','UsersController@profile');
 
-Route::get('/search','UsersController@index');
+Route::get('/search','UsersController@search');
+Route::post('/user.search','UsersController@search');
+Route::post('/users/{id}/follow','UsersController@follow');
+Route::post('/users/{id}/unfollow','UsersController@unfollow');
 
 Route::get('/follow-list','PostsController@index');
 Route::get('/follower-list','PostsController@index');

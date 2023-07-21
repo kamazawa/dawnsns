@@ -43,8 +43,7 @@ class LoginController extends Controller
         if($request->isMethod('post')){
 
             $data=$request->only('mail','password');
-            $request->session()->put('mail', $data['mail']);
-            $request->session()->put('password', $data['password']);
+
             // ログインが成功したら、トップページへ
             //↓ログイン条件は公開時には消すこと
             if(Auth::attempt($data)){

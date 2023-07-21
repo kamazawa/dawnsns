@@ -5,7 +5,7 @@
     <!--IEブラウザ対策-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="ページの内容を表す文章" />
-    <title></title>
+    <title>DAWN-SNS</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <!--スマホ,タブレット対応-->
@@ -22,16 +22,16 @@
 <body>
     <header>
         <div id = "head">
-        <h1><a><img src="images/logo.png"></a></h1>
-            <div id="">
-                <div id="">
-                    <p>〇〇さん<img src="images/arrow.png"></p>
-                <div>
-                <ul>
+          <h1><a href="/top"><img src="./images/main_logo.png" alt="ロゴマーク"></a></h1>
+            <div class="menu">
+                <input type="checkbox" id="menu_bar">
+                <label for="menu_bar">{{ Auth::user() -> username }}さん</label>
+                <ul id="links">
                     <li><a href="/top">ホーム</a></li>
                     <li><a href="/profile">プロフィール</a></li>
                     <li><a href="/logout">ログアウト</a></li>
                 </ul>
+                <img src="./images/dawn.png" alt="アイコン">
             </div>
         </div>
     </header>
@@ -41,24 +41,25 @@
         </div >
         <div id="side-bar">
             <div id="confirm">
-                <p>〇〇さんの</p>
-                <div>
-                <p>フォロー数</p>
-                <p>〇〇名</p>
+                <p>{{ Auth::user() -> username }}さんの</p>
+                <div class='following'>
+                 <p>フォロー数</p>
+                     <p>{{ $follow }} 名</p>
                 </div>
-                <p class="btn"><a href="">フォローリスト</a></p>
-                <div>
-                <p>フォロワー数</p>
-                <p>〇〇名</p>
+                <p class="btn"><a href="/follow-list">フォローリスト</a></p>
+                <div class='followed'>
+                    <p>フォロワー数</p>
+                    <p>{{ $follower }} 名</p>
                 </div>
-                <p class="btn"><a href="">フォロワーリスト</a></p>
+                <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
             </div>
-            <p class="btn"><a href="">ユーザー検索</a></p>
+            <div id="search">
+                <a href="/search">ユーザー検索</a></div>
         </div>
     </div>
     <footer>
     </footer>
-    <script src="JavaScriptファイルのURL"></script>
-    <script src="JavaScriptファイルのURL"></script>
+    <script src="https://code.jquery.com//jquery-3.6.0.min.js"></script>
+    <script src="/js/app.js"></script>
 </body>
 </html>
