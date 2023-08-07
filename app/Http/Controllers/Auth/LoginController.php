@@ -51,9 +51,7 @@ class LoginController extends Controller
             }
         }
 
-         $user = Auth::user();
-
-        return view("auth.login", ['user'=>$user]);
+        return view("auth.login");
     }
 
     public function logout(){

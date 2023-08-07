@@ -1,6 +1,7 @@
 @extends('layouts.login')
 
 @section('content')
+
 <h1>フォロワーリスト</h1>
 @foreach ($timeline as $article)
     <a href = "/follow-list/{{ $article->id }}/profile">
