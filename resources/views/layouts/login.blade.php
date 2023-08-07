@@ -31,7 +31,7 @@
                     <li><a href="/profile">プロフィール</a></li>
                     <li><a href="/logout">ログアウト</a></li>
                 </ul>
-                <img src="./images/dawn.png" alt="アイコン">
+                {{ Auth::user() -> images }}
             </div>
         </div>
     </header>

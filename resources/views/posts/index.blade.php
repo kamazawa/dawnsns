@@ -19,10 +19,12 @@
               <td>{{ $article->created_at}}</td>
               @if ($article->user_id === Auth::user()->id)
               <td>
-              <a href="/post/{{$article->user_id}}/update" class="btn btn-apply modalopen" data-toggle="modal" data-target="{{$article->id}}">
-              <img src="{{asset('images/edit.png')}}" alt="編集ボタン"></a></td>
+                <a href="/post/{{$article->user_id}}/update" class="btn btn-apply modalopen" data-toggle="modal" data-target="{{$article->id}}">
+                <img src="{{asset('images/edit.png')}}" alt="編集ボタン"></a>
+              </td>
               <td>
-              <a href = "/post/{{$article->id}}/delete"onclick="return confirm('このつぶやきを削除します。よろしいでしょうか？')"><img src="{{asset('images/trash.png')}}" alt="削除ボタン"></a></td>
+                <a href = "/post/{{$article->id}}/delete"onclick="return confirm('このつぶやきを削除します。よろしいでしょうか？')"><img src="{{asset('images/trash.png')}}" alt="削除ボタン"></a>
+              </td>
               @endif
             </tr>
             <!-- モーダルの中身 -->

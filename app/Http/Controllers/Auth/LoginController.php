@@ -50,7 +50,10 @@ class LoginController extends Controller
                 return redirect('/top');
             }
         }
-        return view("auth.login");
+
+         $user = Auth::user();
+
+        return view("auth.login", ['user'=>$user]);
     }
 
     public function logout(){

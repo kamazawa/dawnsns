@@ -11,6 +11,7 @@
   </div>
 
   <table class="table-list">
+    @if(!empty($keyword))<p>検索結果： {{ $keyword }} </p>@endif
     @foreach ($userlist as $user)
     @if ($user->id !== Auth::user()->id)
       <tr>
@@ -31,6 +32,7 @@
             <input type="submit" name= "button" value="フォローする" >
           </form>
         </td>
+
       @endif
       </tr>
     @endif

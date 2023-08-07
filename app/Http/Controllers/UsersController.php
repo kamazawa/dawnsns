@@ -25,7 +25,12 @@ class UsersController extends Controller
             ->where('users.username', 'LIKE', "%{$keyword}%")
             ->orderBy('users.id','ASC')
             ->get();
-             return view('search', ['userlist'=>$userlist, 'keyword'=>$keyword]);
+
+             $is_following = \DB::table('follows')
+            ->where('follower', Auth::user()->id)
+            ->pluck('follow');
+
+             return view('search', ['userlist'=>$userlist, 'keyword'=>$keyword,'is_following' => $is_following]);
         } else {
             $userlist = \DB::table('users')
             ->select('users.id','users.username','users.images')
@@ -35,7 +40,8 @@ class UsersController extends Controller
             $is_following = \DB::table('follows')
             ->where('follower', Auth::user()->id)
             ->pluck('follow');
-            return view('search', ['userlist'=>$userlist, 'keyword'=>$keyword,'is_following' => $is_following]);
+
+            return view('search', ['userlist'=>$userlist, 'keyword'=>$keyword, 'is_following' => $is_following]);
         }
     }
     //フォロー機能

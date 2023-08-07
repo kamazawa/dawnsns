@@ -113,3 +113,7 @@ header {
 .fade {
     display: none;
 }
+
+.icon {
+    border-radius: 50%;
+}

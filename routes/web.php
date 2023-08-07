@@ -47,11 +47,15 @@ Route::post('/user.search','UsersController@search');
 Route::post('/users/{id}/follow','UsersController@follow');
 Route::post('/users/{id}/unfollow','UsersController@unfollow');
 
-Route::get('/follow-list','PostsController@index');
-Route::get('/follower-list','PostsController@index');
+Route::get('/follow-list','FollowsController@followList');
+Route::get('/follower-list','FollowsController@followerList');
+Route::get('/follow-list/{id}/profile','FollowsController@profile');
+Route::get('/follower-list/{id}/profile','FollowsController@profile');
 
 Route::get('/logout',
 'Auth\LoginController@logout');
 
+Route::get('/logout',
+'Auth\LoginController@logout');
 Route::post('/logout',
 'Auth\LoginController@logout');

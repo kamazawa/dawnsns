@@ -1,10 +1,10 @@
 @extends('layouts.login')
-
 @section('content')
-<h2 class="page-header">Follow list</h2>
+
+<h2 class="page-header">Name </h2>
+
 @foreach ($timeline as $article)
-    <a href = "/follow-list/{{ $article->id }}/profile">
-    <image src= "{{asset('images/' . $article->images)}}" alt="アイコン"></a>
+    <image src= "{{asset('images/' . $article->images)}}" alt="アイコン">
   <table class='table-hover'>
       <tr>
         <td><img src="{{asset('images/' . $article->images)}}" alt="アイコン"></td>
@@ -14,4 +14,5 @@
       </tr>
 @endforeach
  </table>
+
 @endsection
