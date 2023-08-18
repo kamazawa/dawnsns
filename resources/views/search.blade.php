@@ -15,7 +15,8 @@
     @foreach ($userlist as $user)
     @if ($user->id !== Auth::user()->id)
       <tr>
-        <td><img src="{{asset('images/' . $user->images)}}" alt="アイコン"></td>
+        <td><a href = "/users/{{ $user->id }}/profile">
+         <image src= "{{asset('images/' . $user->images)}}" alt="アイコン"></a></td>
         <td>{{ $user -> username }}</td>
 
         @if ($is_following->contains($user->id))

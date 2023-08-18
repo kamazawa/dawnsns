@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="ページの内容を表す文章" />
     <title>DAWN-SNS</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{asset('/assets/css/reset.css')}}">
+    <link rel="stylesheet" href="{{asset('/assets/css/style.css')}}">
     <!--スマホ,タブレット対応-->
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <!--サイトのアイコン指定-->
@@ -22,7 +22,7 @@
 <body>
     <header>
         <div id = "head">
-          <h1><a href="/top"><img src="./images/main_logo.png" alt="ロゴマーク"></a></h1>
+          <h1><a href="/top"><img src="{{asset('/images/main_logo.png')}}" alt="ロゴマーク"></a></h1>
             <div class="menu">
                 <input type="checkbox" id="menu_bar">
                 <label for="menu_bar">{{ Auth::user() -> username }}さん</label>
@@ -31,7 +31,7 @@
                     <li><a href="/profile">プロフィール</a></li>
                     <li><a href="/logout">ログアウト</a></li>
                 </ul>
-                <image src= "{{asset('images/' . $article->images)}}" alt="アイコン"></a>
+                <img src= "{{ asset('images/' . $image) }}" alt="アイコン"/>
             </div>
         </div>
     </header>
