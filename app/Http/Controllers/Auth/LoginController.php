@@ -44,6 +44,12 @@ class LoginController extends Controller
 
             $data=$request->only('mail','password');
 
+            $password=$request->input('password');
+            $count=mb_strlen($password);
+            $count=str_repeat('●',$count);
+
+            $request->session()->put('count', $count);
+
             // ログインが成功したら、トップページへ
             //↓ログイン条件は公開時には消すこと
             if(Auth::attempt($data)){

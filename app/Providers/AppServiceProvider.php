@@ -28,7 +28,6 @@ class AppServiceProvider extends ServiceProvider
         {
             $view->with('follow', DB::table('follows')->where('follower', auth()->id())->count());
             $view->with('follower', DB::table('follows')->where('follow', auth()->id())->count());
-            $view->with('image', DB::table('users')->where('id', auth()->id())->select('images')->get());
         });
     }
 }

@@ -6,6 +6,16 @@
 
 <h2>新規ユーザー登録</h2>
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+      <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+     </ul>
+    </div>
+    @endif
+
 {{ Form::label('UserName') }}
 {{ Form::text('username',null,['class' => 'input']) }}
 
@@ -19,14 +29,6 @@
 {{ Form::text('password_confirmation',null,['class' => 'input']) }}
 
 {{ Form::submit('REGISTER') }}
-
-@if ($errors->any())
-<ul>
-  @foreach($errors->all() as $error)
-  <li>{{ $error }}</li>
-  @endforeach
-</ul>
-@endif
 
 
 <p><a href="/login">ログイン画面へ戻る</a></p>

@@ -31,16 +31,13 @@ Route::get('/added', 'Auth\RegisterController@added');
 
 //ログイン中のページ
 Route::get('/top','PostsController@index');
-
 Route::post('/top','PostsController@index');
-
 Route::post('posts/create', 'PostsController@create');
-
 Route::get('/post/{id}/delete','PostsController@delete');
-
 Route::put('/post/{id}/update','PostsController@update');
 
-Route::get('/profile','UsersController@profile');
+Route::get('/profile','UsersController@show');
+Route::post('profile/update','UsersController@update');
 
 Route::get('/search','UsersController@search');
 Route::post('/user.search','UsersController@search');

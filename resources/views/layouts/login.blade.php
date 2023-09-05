@@ -31,7 +31,7 @@
                     <li><a href="/profile">プロフィール</a></li>
                     <li><a href="/logout">ログアウト</a></li>
                 </ul>
-                <img src= "{{ asset('images/' . $image) }}" alt="アイコン"/>
+                <img src= "{{ asset('/images/' .Auth::user()->images) }}" alt="アイコン"/>
             </div>
         </div>
     </header>
