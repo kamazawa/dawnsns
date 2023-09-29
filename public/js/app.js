@@ -49,8 +49,11 @@ $(function () {
     $(target).fadeIn();
     return false;
   });
-  $('.close').on('click', function () {
+  $('.modal-content').on('click', function () {
     $('.modal').fadeOut();
     return false;
+  })
+  $('.modal-body').on('click', function (e) {
+    e.stopPropagation();
   })
 });

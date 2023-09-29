@@ -1,31 +1,37 @@
 @extends('layouts.login')
 
 @section('content')
-
-  @foreach ($timeline as $article)
-      <td><image src= "{{asset('images/' . $article->images)}}" alt="アイコン"></td>
-      <td><h2 class="page-header">Name {{ $article -> username }}</h2></td>
-      <td><h2 class="page-header">Bio</h2></td>
-       @if ($is_following->contains($article->id))
+<tr>
+ <div class="user_icon"><image src= "{{asset('storage/images/' . $user_prof->images)}}" alt="アイコン" width="55" height="55"></div>
+ <td><p>Name {{ $user_prof->username }} </p></td>
+ <td><p>Bio
+  @isset($user_prof->bio)
+  {{ $user_prof->bio }}
+        @endisset
+ </p></td>
+</tr>
+      @if ($is_following->contains($user_prof->id))
         <td class="follow-button">
-          <form action="/follow/{{ $article->id }}/unfollow" method="post">
+          <form action="/follow/{{ $user_prof->id }}/unfollow" method="post">
             @csrf
             <input type="submit" name= "button" value="フォローをはずす" >
           </form>
       </td>
       @else
       <td class="unfollow-button">
-          <form action="/follow/{{ $article->id }}/follow" method="post">
+          <form action="/follow/{{ $user_prof->id }}/follow" method="post">
             @csrf
             <input type="submit" name= "button" value="フォローする" >
           </form>
         </td>
-
       @endif
+
+  @foreach ($timeline as $article)
+
     <table class='table-hover'>
       @isset($article->posts)
         <tr>
-          <td><img src="{{asset('images/' . $article->images)}}" alt="アイコン"></td>
+          <td class="user_icon"><img src="{{asset('storage/images/' . $article->images)}}" alt="アイコン" width="55" height="55"></td>
           <td>{{ $article-> username }}</td>
           <td>{{ $article->posts }}</td>
           <td>{{ $article->created_at}}</td>

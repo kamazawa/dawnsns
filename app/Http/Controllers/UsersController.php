@@ -34,8 +34,10 @@ class UsersController extends Controller
         ],
         [
             'username.required' => 'ユーザーネームは必須項目です',
-            'email.required' => 'メールアドレスは必須項目です',
+            'username.between' => '４文字以上１２文字以内で入力してください',
+            'mail.required' => 'メールアドレスは必須項目です',
             'mail.email' => 'メールアドレスではありません',
+            'mail.min' => '4文字以上で入力してください',
             'mail.unique' => 'このメールアドレスは既に使われています',
             'password.min' => 'パスワードは4文字以上で入力してください',
         ]);
@@ -53,8 +55,11 @@ class UsersController extends Controller
         }
 
         if(request('images')){
-        $images = $request->file('images')->store('public/images');
         $image_name=$request->file('images')->getClientOriginalName();
+        $request->file('images')->storeAs('public/images',$image_name);
+        DB::table('users')->where('id',Auth::id())->update([
+            'images'=>$image_name
+            ]);
         }
 
         DB::table('users')->where('id',Auth::id())->update([
@@ -62,7 +67,6 @@ class UsersController extends Controller
             'mail'=>$mail,
             'password'=>$new_password,
             'bio'=>$bio,
-            'images'=>$image_name,
             'updated_at'=>now()
         ]);
 

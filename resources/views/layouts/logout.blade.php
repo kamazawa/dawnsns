@@ -7,7 +7,7 @@
     <meta name="description" content="ページの内容を表す文章" />
     <title></title>
     <link rel="stylesheet" href="{{asset('/assets/css/reset.css')}}">
-    <link rel="stylesheet" href="{{asset('/assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('/assets/css/logout.css')}}">
     <!--スマホ,タブレット対応-->
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <!--サイトのアイコン指定-->
@@ -22,7 +22,7 @@
 <body>
     <header>
         <h1><img src="{{asset('/images/main_logo.png')}}" alt="ロゴマーク"></h1>
-        <p>Social Network Service</p>
+        <p class=main_title>Social Network Service</p>
     </header>
     <div id="container">
         @yield('content')

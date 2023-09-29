@@ -25,13 +25,18 @@ class FollowsController extends Controller
             ->where('follower', Auth::user()->id)
             ->pluck('follow');
 
+            $follows_image =\DB::table('users')
+                ->whereIn('users.id',$is_following)
+                ->select('users.id','users.images')
+                ->get();
+
             $timeline = \DB::table('users')
             ->leftJoin('posts','posts.user_id','=','users.id')
             ->whereIn('users.id',$is_following)
             ->select('posts.id','posts.user_id','posts.posts','posts.created_at','users.id','users.username','users.images')
             ->get();
 
-            return view('follows.followList', ['is_following' => $is_following,'timeline'=>$timeline,]);
+            return view('follows.followList', ['follows_image'=>$follows_image,'is_following' => $is_following,'timeline'=>$timeline,]);
 
     }
 
@@ -40,6 +45,11 @@ class FollowsController extends Controller
             ->where('follow', Auth::user()->id)
             ->pluck('follower');
 
+            $follows_image =\DB::table('users')
+                ->whereIn('users.id',$is_following)
+                ->select('users.id','users.images')
+                ->get();
+
             $timeline = \DB::table('users')
             ->leftJoin('posts','users.id','=','posts.user_id')
             ->whereIn('users.id',$is_following)
@@ -47,10 +57,21 @@ class FollowsController extends Controller
             ->get();
 
 
-            return view('follows.followList', ['is_following' => $is_following,'timeline'=>$timeline,]);
+
+            return view('follows.followerList', ['follows_image'=>$follows_image,'is_following' => $is_following,'timeline'=>$timeline,]);
     }
      //フォロー・フォロワープロフィール
     public function profile($id){
+
+         $is_following = \DB::table('follows')
+            ->where('follower', Auth::user()->id)
+            ->pluck('follow');
+
+         $user_prof =\DB::table('users')
+                ->where('users.id',$id)
+                ->select('users.id','users.username','users.images','users.bio')
+                ->first();
+
 
         $timeline = \DB::table('users')
             ->leftJoin('posts','posts.user_id','=','users.id')
@@ -58,11 +79,8 @@ class FollowsController extends Controller
             ->select('posts.id','posts.user_id','posts.posts','posts.created_at','users.id','users.username','users.images')
             ->get();
 
-            $is_following = \DB::table('follows')
-            ->where('follower', Auth::user()->id)
-            ->pluck('follow');
 
-        return view('follows.profile',['timeline'=>$timeline,'id'=>$id,'is_following' => $is_following]);
+        return view('follows.profile',['user_prof'=>$user_prof,'timeline'=>$timeline,'id'=>$id,'is_following' => $is_following]);
 
     }
     //フォロー

@@ -9,41 +9,31 @@ header {
     background: #3C4767;
 }
 
-/* main content */
-#row {
-    display: flex;
-    flex-flow: row wrap;
-}
-
-#container {
-    flex: 0 0 80%;
-}
-
-#side-bar {
-    flex: 0 0 19%;
-    border-left: 1px solid #6C6C6C;
-}
-
 /*アコーディオンメニュー*/
-.menu {
-    width: 100%;
-    padding: 10px 10px 10px;
+/* 全体 */
+.head {
+    position: relative;
+    padding: 10px 10px 20px;
 }
 
+/*チェックボックス非表示 */
 .menu input {
     display: none;
 }
 
+/* バー */
 .menu label {
     cursor: pointer;
     display: block;
+    text-decoration: none;
     color: #fff;
     line-height: 1;
     position: relative;
-    margin: 0 0 10px;
+    margin: 0 0 10 px;
     padding: 10px;
 }
 
+/* 開いた時の表示 */
 .menu ul {
     margin: 0;
     padding: 0;
@@ -76,6 +66,7 @@ header {
     margin-bottom: 20px;
 }
 
+/* 閉じ矢印 */
 .menu label:after {
     content: "";
     display: block;
@@ -93,6 +84,7 @@ header {
     margin: auto;
 }
 
+/* 開き矢印 */
 .menu input[type=checkbox]:checked+label::after {
     content: "";
     display: block;
@@ -105,15 +97,102 @@ header {
     transform: rotate(-45deg);
     position: absolute;
     right: 2%;
-    top: 7%;
-    bottom: 0;
+    top: 0%;
+    bottom: 15%;
     margin: auto;
 }
 
+/* main content */
+#row {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+#container {
+    flex: 0 0 80%;
+}
+
+#side-bar {
+    flex: 0 0 19%;
+    border-left: 1px solid #6C6C6C;
+}
+
+
+/* 新規投稿 */
+.form-group {
+    display: flex;
+}
+
+/* 削除ボタン */
+.trash_icon {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.trash_icon img {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 100%;
+    display: block;
+    -wabkit-transition: .4s ease-in-out;
+    transition: .4s ease-in-out;
+}
+
+.trash_icon img:last-of-type {
+    opacity: 0;
+    transition: opacity .2S;
+}
+
+.trash_icon:hover img {
+    opacity: 1;
+}
+
+/* アイコン */
+.user_icon img {
+    border-radius: 50%;
+}
+
+.menu img {
+    border-radius: 50%;
+}
+
+.list img {
+    border-radius: 50%;
+}
+
+.table-list img {
+    border-radius: 50%;
+}
+
+/* モーダル */
 .fade {
     display: none;
 }
 
-.icon {
-    border-radius: 50%;
+
+.modal-content {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 1;
+    background-color: rgba(200, 200, 200, 0.5);
+}
+
+.modal-body {
+    width: 600px;
+    height: 80px;
+    background-color: #fff;
+    padding: 30px;
+    margin: 100px auto;
+    text-align: center;
 }

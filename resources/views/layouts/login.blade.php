@@ -26,12 +26,17 @@
             <div class="menu">
                 <input type="checkbox" id="menu_bar">
                 <label for="menu_bar">{{ Auth::user() -> username }}さん</label>
+                <!-- メニュー表示 -->
                 <ul id="links">
                     <li><a href="/top">ホーム</a></li>
                     <li><a href="/profile">プロフィール</a></li>
                     <li><a href="/logout">ログアウト</a></li>
                 </ul>
-                <img src= "{{ asset('/images/' .Auth::user()->images) }}" alt="アイコン"/>
+                @if (Auth::user()->images == "dawn.png")
+                <img src= "{{ asset('/images/' .Auth::user()->images) }}" alt="アイコン">
+                @else
+                <img src= "{{ asset('storage/images/' .Auth::user()->images) }}" alt="アイコン" width="55" height="55">
+                @endif
             </div>
         </div>
     </header>

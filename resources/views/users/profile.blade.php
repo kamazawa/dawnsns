@@ -13,7 +13,9 @@
     </div>
     @endif
   <input type="hidden" name="id" value="{{ $user->id }}">
-  <img src= "{{ asset('/images/' .Auth::user()->images) }}" alt="アイコン"/>
+  <div class="user_icon">
+   <img src= "{{ asset('storage/images/' .Auth::user()->images) }}" alt="アイコン"  width="55" height="55">
+  </div>
  <div class="form-group">
   <label>UserName</label>
   <input type="text" name="username" value="{{ $user->username }}">

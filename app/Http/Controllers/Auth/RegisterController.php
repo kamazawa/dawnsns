@@ -56,8 +56,10 @@ class RegisterController extends Controller
         ],
         [
             'username.required' => 'ユーザーネームは必須項目です',
-            'email.required' => 'メールアドレスは必須項目です',
+            'username.between' => '４文字以上１２文字以内で入力してください',
+            'mail.required' => 'メールアドレスは必須項目です',
             'mail.email' => 'メールアドレスではありません',
+            'mail.min' => '4文字以上で入力してください',
             'mail.unique' => 'このメールアドレスは既に使われています',
             'password.required' => 'パスワードは必須項目です',
             'password.min' => 'パスワードは4文字以上で入力してください',

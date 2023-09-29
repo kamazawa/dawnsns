@@ -16,7 +16,7 @@
     @if ($user->id !== Auth::user()->id)
       <tr>
         <td><a href = "/users/{{ $user->id }}/profile">
-         <image src= "{{asset('images/' . $user->images)}}" alt="アイコン"></a></td>
+         <image src= "{{asset('storage/images/' . $user->images)}}" alt="アイコン" width="55" height="55"></a></td>
         <td>{{ $user -> username }}</td>
 
         @if ($is_following->contains($user->id))
